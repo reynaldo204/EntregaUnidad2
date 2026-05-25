@@ -13,6 +13,10 @@ export class ProductoService {
     return this.repository.findAll();
   }
 
+  async getProductoById(id: number): Promise<Producto | null> {
+    return this.repository.findById(id);
+  }
+
   async createProducto(data: { nombre: string; descripcion?: string; precio: number }): Promise<Producto> {
     return this.repository.create(data);
   }

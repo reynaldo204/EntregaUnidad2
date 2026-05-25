@@ -5,6 +5,7 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
 import productoRoutes from './routes/producto.routes';
 import { errorHandler } from './middlewares/error.middleware';
+import applyGraphql from './graphql';
 
 const app = express();
 
@@ -90,13 +91,5 @@ app.get('/api/health', (req, res) => {
 
 // Error handling middleware
 app.use(errorHandler);
-
-// 404 handler
-app.use('*', (req, res) => {
-  res.status(404).json({
-    success: false,
-    error: 'Ruta no encontrada',
-  });
-});
 
 export default app;

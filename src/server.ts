@@ -1,5 +1,6 @@
 import app from './app';
 import prisma from './config/prisma';
+import applyGraphql from './graphql';
 
 const PORT = process.env.PORT || 3000;
 
@@ -8,6 +9,17 @@ const startServer = async () => {
     // Test database connection
     await prisma.$connect();
     console.log('Conectado a la base de datos PostgreSQL');
+
+    // Apply GraphQL apollo
+    await applyGraphql(app);
+    console.log('GraphQL endpoint disponible en /api/graphql');
+
+    app.use('*', (req: any, res: any) => {
+      res.status(404).json({
+        success: false,
+        error: 'Ruta no encontrada',
+      });
+    });
 
     app.listen(PORT, () => {
       console.log(`Servidor corriendo en http://localhost:${PORT}`);
