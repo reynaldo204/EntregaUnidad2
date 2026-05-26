@@ -10,6 +10,8 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
+    "prisma:status": "prisma migrate status",
+    "postinstall": "prisma generate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": ["api", "rest", "productos", "nodejs", "express", "prisma", "postgresql"],
